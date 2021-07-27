@@ -26,7 +26,6 @@ Day method:
 */
 
 class Meetup {
-  static teens = [13, 14, 15, 16, 17, 18, 19];
   static daysOfWeek = {
     sunday: 0,
     monday: 1,
@@ -45,20 +44,14 @@ class Meetup {
   day(dayOfWeek, descriptor) {
     let array = this._findMonthDoW(dayOfWeek);
 
-    if (descriptor !== 'teenth') {
-      array = array.map(day => day.toString())
-    }
-
     switch (descriptor.toLowerCase()) {
       case 'first': return array[0];
       case 'second': return array[1];
       case 'third': return array[2];
       case 'fourth': return array[3];
       case 'fifth': return array[4] || null;
-      case 'last': return array.slice(-1)[0];
-      default: {
-        return array.filter(day => Meetup.teens.includes(day.getDate()))[0].toString();
-      }
+      case 'last': return array.slice(-1);
+      default: return array.filter(date => date.getDate() > 12 && date.getDate() < 20)[0];
     }
   }
 
