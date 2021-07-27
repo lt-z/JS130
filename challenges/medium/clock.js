@@ -49,7 +49,7 @@ class Clock {
     this.minutes += minutes % 60;
     this.minutes %= 60;
 
-    return this.toString();
+    return this;
   }
 
   subtract(minutes) {
@@ -63,14 +63,8 @@ class Clock {
       this.hours -= 1;
     }
 
-    this.wrapTime();
-    return this.toString();
-  }
-
-  wrapTime() {
-    if (this.hours < 0) {
-      this.hours += 24
-    }
+    if (this.hours < 0) this.hours += 24;
+    return this;
   }
 
   isEqual(otherClock) {
